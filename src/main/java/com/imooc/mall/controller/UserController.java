@@ -1,12 +1,23 @@
 package com.imooc.mall.controller;
 
+import com.imooc.mall.form.UserForm;
 import com.imooc.mall.pojo.User;
+import com.imooc.mall.service.IUserService;
 import com.imooc.mall.vo.ResponseVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+
+import static com.imooc.mall.enums.ResponseEnum.PARAM_ERROR;
 
 @RestController
 @RequestMapping("/user")
@@ -14,10 +25,20 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "用户控制器")
 public class UserController {
 
+    @Autowired
+    private IUserService userService;
+
     @ApiOperation("注册")
     @PostMapping("/register")
-    public ResponseVo register(@RequestBody User user) {
-        log.info("username={}", user.getUsername());
-        return ResponseVo.success("注册成功");
+    public ResponseVo register(@Valid @RequestBody UserForm userForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            log.error("注册提交的参数有误，{}{}", bindingResult.getFieldError().getField(), bindingResult.getFieldError().getDefaultMessage());
+            return ResponseVo.error(PARAM_ERROR, bindingResult);
+        }
+        User user = new User();
+        BeanUtils.copyProperties(userForm, user);
+
+        return userService.register(user);
     }
+
 }
