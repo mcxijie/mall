@@ -53,11 +53,11 @@ public class UserServiceImpl implements IUserService {
             return ResponseVo.error(USERNAME_OR_PASSWORD_ERROR);
             //用户不存在
         }
-        if (!user.getPassword().equalsIgnoreCase(DigestUtils.md5DigestAsHex(user.getPassword().getBytes(StandardCharsets.UTF_8)))) {
+        if (!user.getPassword().equalsIgnoreCase(DigestUtils.md5DigestAsHex(password.getBytes(StandardCharsets.UTF_8)))) {
             //密码错误(返回：用户名或密码错误)
             return ResponseVo.error(USERNAME_OR_PASSWORD_ERROR);
         }
-
-        return ResponseVo.success();
+        user.setPassword(null);
+        return ResponseVo.success(user);
     }
 }
