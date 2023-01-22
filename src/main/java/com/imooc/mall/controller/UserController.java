@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import static com.imooc.mall.consts.MallConst.CURRENT_USER;
-import static com.imooc.mall.enums.ResponseEnum.NEED_LOGIN;
 import static com.imooc.mall.enums.ResponseEnum.PARAM_ERROR;
 
 @RestController
@@ -59,11 +58,16 @@ public class UserController {
     @ApiOperation("获取用户信息")
     public ResponseVo<User> userInfo(HttpSession session) {
         User user = (User) session.getAttribute(CURRENT_USER);
-        if (user == null) {
-            return ResponseVo.error(NEED_LOGIN);
-        }
 
         return ResponseVo.success(user);
+    }
+
+    @PostMapping("/user/logout")
+    @ApiOperation("登出")
+    public ResponseVo logout(HttpSession session) {
+
+        session.removeAttribute(CURRENT_USER);
+        return ResponseVo.success();
     }
 
 }
