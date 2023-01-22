@@ -20,7 +20,7 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public ResponseVo register(User user) {
+    public ResponseVo<User> register(User user) {
 
         //username不能重复
         Integer countByUsername = userMapper.countByUsername(user.getUsername());
@@ -40,9 +40,24 @@ public class UserServiceImpl implements IUserService {
 
         //写入数据库
         int resultCount = userMapper.insertSelective(user);
-        if (resultCount == 0){
+        if (resultCount == 0) {
             return ResponseVo.error(ERROR);
         }
+        return ResponseVo.success();
+    }
+
+    @Override
+    public ResponseVo<User> login(String username, String password) {
+        User user = userMapper.selectByUsername(username);
+        if (user == null) {
+            return ResponseVo.error(USERNAME_OR_PASSWORD_ERROR);
+            //用户不存在
+        }
+        if (!user.getPassword().equalsIgnoreCase(DigestUtils.md5DigestAsHex(user.getPassword().getBytes(StandardCharsets.UTF_8)))) {
+            //密码错误(返回：用户名或密码错误)
+            return ResponseVo.error(USERNAME_OR_PASSWORD_ERROR);
+        }
+
         return ResponseVo.success();
     }
 }

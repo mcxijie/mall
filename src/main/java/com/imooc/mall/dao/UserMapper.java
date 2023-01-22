@@ -20,4 +20,6 @@ public interface UserMapper {
     Integer countByUsername(String username);
 
     Integer countByEmail(String email);
+
+    User selectByUsername(String username);
 }
