@@ -27,29 +27,29 @@
     </javaTypeResolver>
 
     <javaModelGenerator targetPackage="com.imooc.mall.pojo" targetProject="src/main/java">
-      <property name="enableSubPackages" value="true" />
-      <property name="trimStrings" value="true" />
+      <property name="enableSubPackages" value="true"/>
+      <property name="trimStrings" value="true"/>
     </javaModelGenerator>
 
-    <sqlMapGenerator targetPackage="mappers"  targetProject="src/main/resources">
-        <property name="enableSubPackages" value="true"/>
+    <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true"/>
     </sqlMapGenerator>
 
-      <javaClientGenerator type="XMLMAPPER" targetPackage="com.imooc.mall.dao" targetProject="src/main/java">
-          <property name="enableSubPackages" value="true"/>
-      </javaClientGenerator>
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.imooc.mall.dao" targetProject="src/main/java">
+      <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
 
-      <!--            <table tableName="mall_order" domainObjectName="Order" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
-      <!--            <table tableName="mall_pay_info" domainObjectName="PayInfo" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
-      <!--        <table tableName="mall_order_item" domainObjectName="OrderItem" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
-      <!--            <table tableName="mall_user" domainObjectName="User" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
-      <table tableName="mall_category" domainObjectName="Category" enableCountByExample="false"
-             enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
-      <!--        <table tableName="mall_product" domainObjectName="Product" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">-->
-      <!--            <columnOverride column="detail" jdbcType="VARCHAR" />-->
-      <!--            <columnOverride column="sub_images" jdbcType="VARCHAR" />-->
-      <!--        </table>-->
-      <!--    <table tableName="mall_shipping" domainObjectName="Shipping" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+    <!--            <table tableName="mall_order" domainObjectName="Order" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+    <!--            <table tableName="mall_pay_info" domainObjectName="PayInfo" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+    <!--        <table tableName="mall_order_item" domainObjectName="OrderItem" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+    <!--            <table tableName="mall_user" domainObjectName="User" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+    <!--            <table tableName="mall_category" domainObjectName="Category" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+    <table tableName="mall_product" domainObjectName="Product" enableCountByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">
+      <columnOverride column="detail" jdbcType="VARCHAR"/>
+      <columnOverride column="sub_images" jdbcType="VARCHAR"/>
+    </table>
+    <!--    <table tableName="mall_shipping" domainObjectName="Shipping" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
 
   </context>
 </generatorConfiguration>
