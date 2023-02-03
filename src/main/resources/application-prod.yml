@@ -1,0 +1,31 @@
+server:
+  port: 8091
+  servlet:
+    session:
+      timeout: 120
+knife4j:
+  enable: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://47.116.43.59:3306/mall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai
+  redis:
+    host: 47.116.43.59
+    port: 6379
+    password: 123456
+  rabbitmq:
+    addresses: 47.116.43.59
+    port: 5672
+    username: admin
+    password: 123456
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mappers/*.xml
+
+
+
